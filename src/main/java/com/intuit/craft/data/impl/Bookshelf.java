@@ -92,7 +92,7 @@ public class Bookshelf<T> implements Shelf<T>{
 		
 		Book book = BookData.bookStore.get(id);
 		
-		if(book == null && book.isBorrowed())
+		if(book == null || book.isBorrowed())
 			throw new ItemNotFoundException("Book not found");
 
 		synchronized(this)
