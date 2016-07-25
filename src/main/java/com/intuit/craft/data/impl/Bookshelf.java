@@ -120,7 +120,7 @@ public class Bookshelf<T> implements Shelf<T>{
 	public void returnItem(UUID id) throws ItemNotFoundException{
 		Book book = BookData.bookStore.get(id);	
 		
-		if(book == null)
+		if(book == null || !book.isBorrowed())
 			throw new ItemNotFoundException("Book not found");
 
 		if(book.isBorrowed())
@@ -128,7 +128,8 @@ public class Bookshelf<T> implements Shelf<T>{
 			book.setBorrower(EMPTY);
 			book.setBorrowed(false);
 			book.setDueDate(null);	
-		}			
+		}
+		
 	}
 
 
