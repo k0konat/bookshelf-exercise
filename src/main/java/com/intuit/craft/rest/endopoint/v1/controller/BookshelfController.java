@@ -1,6 +1,5 @@
 package com.intuit.craft.rest.endopoint.v1.controller;
 
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -14,14 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.intuit.craft.domain.BookshelfService;
+import com.intuit.craft.domain.requests.AddBookRequest;
 import com.intuit.craft.domain.requests.CheckoutBookRequest;
+import com.intuit.craft.exception.ConflictException;
 import com.intuit.craft.exception.ItemNotFoundException;
 import com.intuit.craft.exception.MissingArgumentException;
 import com.intuit.craft.exception.OverflowException;
@@ -62,17 +62,19 @@ public class BookshelfController {
  	 *
  	 * @param book the book
  	 * @return the response entity
+	 * @throws OverflowException 
  	 */
  	@RequestMapping(value = "/book", method = RequestMethod.POST)
- 	HttpEntity<Void> create(@RequestBody @Valid Book book){
- 		
-		try {
-			logger.debug("Inside create method and the size of the book store is " + BookData.bookStore.size());
-			bookShelfService.add(book);
-		} catch (OverflowException e) {		
-			return new ResponseEntity<>(HttpStatus.INSUFFICIENT_STORAGE);
-		}
-		 return new ResponseEntity<Void>(HttpStatus.CREATED);
+ 	HttpEntity<Void> add(@RequestBody @Valid AddBookRequest bookRequest) throws OverflowException{
+	
+		logger.debug("Inside create method and the size of the book store is " + BookData.bookStore.size());
+		Book book = new Book.Builder().setTitle(bookRequest.getTitle())
+				.setISBN(bookRequest.getISBN())
+				.setAuthor(bookRequest.getAuthor()).build();
+			
+		bookShelfService.add(book);
+		
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	 }
 	 
 	 /**
@@ -127,19 +129,17 @@ public class BookshelfController {
 	 *
 	 * @param checkoutBookRequest the checkout book requet.
  	 * @return the http entity which includes ocal date time when the book needs to be returned to the store.
+ 	 * @throws ConflictException 
+ 	 * @throws ItemNotFoundException 
  	 */
  	@RequestMapping(value="/book/checkout", method = RequestMethod.PUT)
-	HttpEntity<?> checkout(@RequestBody CheckoutBookRequest checkoutBookRequest){
+	HttpEntity<?> checkout(@RequestBody CheckoutBookRequest checkoutBookRequest) throws ItemNotFoundException, ConflictException{
 		
- 		try {
- 			logger.debug("Id of the book  " + checkoutBookRequest.getId());
-			logger.debug("Name of the person to check out" + checkoutBookRequest.getName());
-			LocalDateTime dt = bookShelfService.checkout(checkoutBookRequest.getId(), checkoutBookRequest.getName());
-			return new ResponseEntity<>(dt, HttpStatus.OK);
-		} catch (ItemNotFoundException e) {
-			 return new ResponseEntity<>("Book not found in the store", HttpStatus.NOT_FOUND);
-		}
-		
+		logger.debug("Id of the book  " + checkoutBookRequest.getId());
+		logger.debug("Name of the person to check out" + checkoutBookRequest.getName());
+		LocalDateTime dt = bookShelfService.checkout(checkoutBookRequest.getId(), checkoutBookRequest.getName());
+		return new ResponseEntity<>(dt, HttpStatus.OK);
+	
  	}
 	 
 	 /**
@@ -148,15 +148,13 @@ public class BookshelfController {
  	 * @param id the unique id of a book
  	 */
  	@RequestMapping(value="/book/returnBook", method = RequestMethod.PUT)
- 	HttpEntity<Void> returnBook(@RequestBody String id){
+ 	HttpEntity<Void> returnBook(@RequestBody String id) throws ItemNotFoundException{
 		 UUID uuid = UUID.fromString(id);
 		 logger.debug("Id of the book  " + id);
-		 try {
-			 bookShelfService.returnBook(uuid);
-			 return new ResponseEntity<>(HttpStatus.OK);
-		 } catch (ItemNotFoundException e) {
-			 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		 }
+		
+		 bookShelfService.returnBook(uuid);
+		 return new ResponseEntity<>(HttpStatus.OK);
+		
 	 }
 	 
 	 /**
@@ -181,6 +179,12 @@ public class BookshelfController {
             }
         }
     }
+ 	
+ 	
+ 	
+ 	
+
+ 
 	 	 
 
 }

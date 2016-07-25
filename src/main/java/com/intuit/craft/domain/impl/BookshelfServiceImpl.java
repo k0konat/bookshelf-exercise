@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.intuit.craft.data.Shelf;
 import com.intuit.craft.data.entity.Book;
 import com.intuit.craft.domain.BookshelfService;
+import com.intuit.craft.exception.ConflictException;
 import com.intuit.craft.exception.ItemNotFoundException;
 import com.intuit.craft.exception.OverflowException;
 
@@ -69,7 +70,7 @@ public class BookshelfServiceImpl implements BookshelfService{
 	 * @see com.intuit.craft.domain.BookshelfService#checkout(java.util.UUID, java.lang.String)
 	 */
 	@Override
-	public LocalDateTime checkout(UUID id, String name) throws ItemNotFoundException {
+	public LocalDateTime checkout(UUID id, String name) throws ItemNotFoundException, ConflictException {
 		return bookshelf.checkout(id, name);
 	}
 

@@ -2,6 +2,8 @@ package com.intuit.craft.domain.requests;
 
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Required;
+
 
 /**
  * The Class CheckoutBookRequest.
@@ -30,6 +32,7 @@ public class CheckoutBookRequest {
 	 *
 	 * @param id the new id
 	 */
+	@Required
 	public void setId(UUID id) {
 		this.id = id;
 	}
@@ -48,6 +51,7 @@ public class CheckoutBookRequest {
 	 *
 	 * @param name the new name
 	 */
+	@Required
 	public void setName(String name) {
 		this.name = name;
 	}

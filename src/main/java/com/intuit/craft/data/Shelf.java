@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import com.intuit.craft.exception.ConflictException;
 import com.intuit.craft.exception.ItemNotFoundException;
 import com.intuit.craft.exception.OverflowException;
 
@@ -49,8 +50,9 @@ public interface Shelf<T> {
 	 * @param name , Name of the person. For simplicity, just using a String
 	 * @return the local date time when the item needs to be returned to the store.
 	 * @throws ItemNotFoundException
+	 * @throws ConflictException 
 	 */
-	LocalDateTime checkout(UUID id, String name) throws ItemNotFoundException;
+	LocalDateTime checkout(UUID id, String name) throws ItemNotFoundException, ConflictException;
 	
 	/**
 	 * Return the item to the store so that the item will be available for any one to check out from the system.

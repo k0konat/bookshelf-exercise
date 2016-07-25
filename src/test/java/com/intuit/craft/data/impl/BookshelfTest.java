@@ -18,6 +18,8 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import com.intuit.craft.data.Shelf;
 import com.intuit.craft.data.entity.Book;
+import com.intuit.craft.exception.ConflictException;
+import com.intuit.craft.exception.ItemNotFoundException;
 import com.intuit.craft.exception.OverflowException;
 
 /**
@@ -98,8 +100,15 @@ public class BookshelfTest {
  	 {
 		 UUID id = getId();	
 		 
- 		 LocalDateTime dt =  bookshelf.checkout(id, CHECKOUT_PERSON);
- 		 assertEquals(dt.toLocalDate(), LocalDate.now().plusDays(14));
+ 		 LocalDateTime dt;
+		try {
+			dt = bookshelf.checkout(id, CHECKOUT_PERSON);
+			assertEquals(dt.toLocalDate(), LocalDate.now().plusDays(14));
+		} catch (ItemNotFoundException | ConflictException e) {
+			
+			e.printStackTrace();
+		}
+ 		 
 		 
  	 }
 	 

@@ -12,6 +12,7 @@ import org.springframework.util.StringUtils;
 
 import com.intuit.craft.data.Shelf;
 import com.intuit.craft.data.entity.Book;
+import com.intuit.craft.exception.ConflictException;
 import com.intuit.craft.exception.ItemNotFoundException;
 import com.intuit.craft.exception.OverflowException;
 
@@ -44,19 +45,23 @@ public class Bookshelf<T> implements Shelf<T>{
 	 * @see com.intuit.craft.data.Shelf#add(java.lang.Object)
 	 */
 	@Override
-	public void add(T book) throws OverflowException {
+	public  void add(T book) throws OverflowException {
+		
+		
+		if(BookData.bookStore.size() == MAX_LIMIT)
+			throw new OverflowException("Bookshelf is full");
 		
 		if(book != null)
 		{
-			if(BookData.bookStore.size() < MAX_LIMIT)
+			synchronized(this)
 			{
-				Book newBook = (Book)book;
-				BookData.bookStore.put(newBook.getId(), newBook);
-			}
-			else
-			{
-				throw new OverflowException("Bookshelf is full and it does not have any room to include more books");
-			}
+				if(BookData.bookStore.size() < MAX_LIMIT)
+				{
+					Book newBook = (Book)book;
+					BookData.bookStore.put(newBook.getId(), newBook);
+				}else
+					throw new OverflowException("Bookshelf is full");
+			}	
 		}
 
 	}
@@ -66,51 +71,64 @@ public class Bookshelf<T> implements Shelf<T>{
 	 */
 	@Override
 	public void remove(UUID id) throws ItemNotFoundException{
-		if(BookData.bookStore.get(id) != null)
-			BookData.bookStore.remove(id);
-		else
-			throw new ItemNotFoundException("Book is not available at this time to remove it from the shelf");
+		Book book = BookData.bookStore.get(id);
+		
+		if(book == null)
+			throw new ItemNotFoundException("Book not found");
+		
+
+		BookData.bookStore.remove(id);
+
 	}
 	
 	
 	/* (non-Javadoc)
 	 * @see com.intuit.craft.data.Shelf#checkout(java.util.UUID, java.lang.String)
+	 * 
+	 * Since multiple users can checkout a book for the bookshelf and there is a possibity of Race Conditions here, we used 
 	 */
 	@Override
-	public LocalDateTime checkout(UUID id, String checkoutName) throws ItemNotFoundException {
+	public LocalDateTime checkout(UUID id, String checkoutName) throws ItemNotFoundException, ConflictException {
 		
 		Book book = BookData.bookStore.get(id);
 		
-		if(book != null)
+		if(book == null && book.isBorrowed())
+			throw new ItemNotFoundException("Book not found");
+
+		synchronized(this)
 		{
-			book.setBorrower(checkoutName);
-			book.setBorrowed(true);
-			book.calcualteAndSetDueDate();
-			
-			return book.getDueDate();	
-			
-		}else
-			throw new ItemNotFoundException("Book was not checked out because it is not found on the shelf");		
+			if(!book.isBorrowed())
+			{
+				book.setBorrower(checkoutName);
+				book.setBorrowed(true);
+				book.calcualteAndSetDueDate();
+				
+				return book.getDueDate();
+			}
+			else
+				throw new ConflictException("Book is not avaible at this time for checkout");
+		}
+
 
 	}
 	
 	/* (non-Javadoc)
 	 * @see com.intuit.craft.data.Shelf#returnItem(java.util.UUID)
+	 * 
 	 */
 	@Override
 	public void returnItem(UUID id) throws ItemNotFoundException{
 		Book book = BookData.bookStore.get(id);	
 		
 		if(book == null)
-			throw new ItemNotFoundException("Book not found in the store");
+			throw new ItemNotFoundException("Book not found");
 
 		if(book.isBorrowed())
 		{
 			book.setBorrower(EMPTY);
 			book.setBorrowed(false);
 			book.setDueDate(null);	
-		}	
-		
+		}			
 	}
 
 
@@ -163,18 +181,18 @@ public class Bookshelf<T> implements Shelf<T>{
 			
 			if(!StringUtils.isEmpty(title))
 			{
-				books = books.filter(book -> book.getTitle().contains(title));
+				books = books.filter(book -> book.getTitle().toLowerCase().contains(title.toLowerCase()));
 			}
 			
 			if(!StringUtils.isEmpty(ISBN))
 			{
-				books = books.filter(book -> book.getISBN().equals(ISBN));
+				books = books.filter(book -> book.getISBN().toLowerCase().equals(ISBN.toLowerCase()));
 			}
 			
 			if(!StringUtils.isEmpty(author))
 			{
 				books = books.filter(book -> 
-								book.getAuthor().stream().anyMatch(a -> a.contains(author)));
+								book.getAuthor().stream().anyMatch(a -> a.toLowerCase().contains(author.toLowerCase())));
 			}
 	
 			return (List<T>) books.collect(Collectors.toList());

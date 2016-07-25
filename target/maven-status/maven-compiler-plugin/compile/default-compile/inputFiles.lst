@@ -7,6 +7,7 @@
 /Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/domain/BookshelfService.java
 /Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/data/impl/Bookshelf.java
 /Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/common/DateUtil.java
+/Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/domain/requests/AddBookRequest.java
 /Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/data/impl/BookData.java
 /Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/exception/ItemNotFoundException.java
 /Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/data/entity/Item.java
@@ -15,5 +16,6 @@
 /Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/data/entity/Book.java
 /Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/rest/endopoint/v1/controller/handler/ErrorInfo.java
 /Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/Application.java
+/Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/exception/ConflictException.java
 /Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/exception/MissingArgumentException.java
 /Users/k0konat/GitHub/bookshelf-exercise/src/main/java/com/intuit/craft/domain/impl/BookshelfServiceImpl.java
