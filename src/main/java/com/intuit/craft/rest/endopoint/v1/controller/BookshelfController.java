@@ -68,11 +68,9 @@ public class BookshelfController {
  	HttpEntity<Void> add(@RequestBody @Valid AddBookRequest bookRequest) throws OverflowException{
 	
 		logger.debug("Inside create method and the size of the book store is " + BookData.bookStore.size());
-		Book book = new Book.Builder().setTitle(bookRequest.getTitle())
-				.setISBN(bookRequest.getISBN())
-				.setAuthor(bookRequest.getAuthor()).build();
+		
 			
-		bookShelfService.add(book);
+		bookShelfService.add(bookRequest);
 		
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	 }
@@ -108,7 +106,7 @@ public class BookshelfController {
  	 */
  	@RequestMapping(value = "/search",
 			 method = RequestMethod.GET, produces = ApplicationContentType)
-	HttpEntity<List<Book>> searchTitle(@RequestParam(value="title",required = false) String title,
+	HttpEntity<List<Book>> search(@RequestParam(value="title",required = false) String title,
 			 @RequestParam(value="author",required = false) String author,
 			 @RequestParam(value="ISBN", required = false) String ISBN) {
 		 return new ResponseEntity<>(bookShelfService.search(title, author, ISBN),HttpStatus.OK);
@@ -137,7 +135,7 @@ public class BookshelfController {
 		
 		logger.debug("Id of the book  " + checkoutBookRequest.getId());
 		logger.debug("Name of the person to check out" + checkoutBookRequest.getName());
-		LocalDateTime dt = bookShelfService.checkout(checkoutBookRequest.getId(), checkoutBookRequest.getName());
+		LocalDateTime dt = bookShelfService.checkout(checkoutBookRequest);
 		return new ResponseEntity<>(dt, HttpStatus.OK);
 	
  	}

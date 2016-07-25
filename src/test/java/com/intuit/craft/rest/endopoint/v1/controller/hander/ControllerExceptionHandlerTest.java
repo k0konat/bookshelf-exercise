@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.intuit.craft.domain.BookshelfService;
+import com.intuit.craft.domain.requests.CheckoutBookRequest;
 import com.intuit.craft.rest.endopoint.v1.controller.BookshelfController;
 import com.intuit.craft.rest.endopoint.v1.controller.handler.ControllerExceptionHandler;
 import com.intuit.craft.util.TestUtils;
@@ -42,8 +43,11 @@ public class ControllerExceptionHandlerTest {
         String url = "/books/book/return";
        
         UUID uuid = UUID.randomUUID();
+        CheckoutBookRequest bookRequest = new CheckoutBookRequest();
+        bookRequest.setId(uuid);
+        bookRequest.setName("UNKNOWN");
 
-        when(mockBookshelfService.checkout(uuid, "UNKNOWN"))
+        when(mockBookshelfService.checkout(bookRequest))
                 .thenReturn(LocalDateTime.now());
 
         mockMvc.perform(put(url)

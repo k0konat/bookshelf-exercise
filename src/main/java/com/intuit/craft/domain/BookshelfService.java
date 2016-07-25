@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.UUID;
 
 import com.intuit.craft.data.entity.Book;
+import com.intuit.craft.domain.requests.AddBookRequest;
+import com.intuit.craft.domain.requests.CheckoutBookRequest;
 import com.intuit.craft.exception.ConflictException;
 import com.intuit.craft.exception.ItemNotFoundException;
 import com.intuit.craft.exception.OverflowException;
@@ -32,13 +34,13 @@ public interface BookshelfService {
 	 * @param book 
 	 * @throws OverflowException when storage limit is exceeded
 	 */
-	void add(Book book) throws OverflowException;
+	void add(AddBookRequest bookRequest) throws OverflowException;
 	
 	/**
 	 * Removes the book from the store
 	 *
 	 * @param id the unique id for the book
-	 * @throws bookNotFoundException 
+	 * @throws ItemNotFoundException 
 	 */
 	void remove(UUID id) throws ItemNotFoundException;	
 	
@@ -51,7 +53,7 @@ public interface BookshelfService {
 	 * @throws ItemNotFoundException
 	 * @throws ConflictException 
 	 */
-	LocalDateTime checkout(UUID id, String name) throws ItemNotFoundException, ConflictException;
+	LocalDateTime checkout(CheckoutBookRequest checkoutBookRequest) throws ItemNotFoundException, ConflictException;
 	
 	/**
 	 * Return the book to the store so that the item will be available for any one to check out from the system.
