@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.intuit.craft.rest.endopoint.v1.controller.BookShelfControllerTest" time="0.752" tests="4" errors="0" skipped="0" failures="0">
+<testsuite name="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.798" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/lib"/>
     <property name="java.vm.version" value="25.66-b17"/>
     <property name="gopherProxySet" value="false"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/k0konat/Library/bookshelf-exercise"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/k0konat/Library/bookshelf-exercise"/>
+    <property name="user.dir" value="/Users/k0konat/GitHub/bookshelf-exercise"/>
     <property name="java.runtime.version" value="1.8.0_66-b17"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/lib/endorsed"/>
@@ -25,7 +24,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Users/k0konat/Library/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf107474531432651390.tmp"/>
+    <property name="classworlds.conf" value="/Users/k0konat/apache-maven-3.1.1/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/k0konat/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -35,14 +34,15 @@
     <property name="user.home" value="/Users/k0konat"/>
     <property name="user.timezone" value="America/Chicago"/>
     <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
-    <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="1.8"/>
     <property name="user.name" value="k0konat"/>
-    <property name="java.class.path" value="/Users/k0konat/eclipse/java-mars/Eclipse.app/Contents/MacOS/../../../../../.p2/pool/plugins/org.eclipse.m2e.maven.runtime_1.6.2.20150902-0001/jars/plexus-classworlds-2.5.2.jar"/>
+    <property name="java.class.path" value="/Users/k0konat/apache-maven-3.1.1/boot/plexus-classworlds-2.5.1.jar"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -51,15 +51,15 @@
     <property name="java.ext.dirs" value="/Users/k0konat/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
     <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="/Users/k0konat/Library/bookshelf-exercise/EMBEDDED"/>
+    <property name="maven.home" value="/Users/k0konat/apache-maven-3.1.1"/>
     <property name="file.separator" value="/"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="add_NewBookEntry_ShouldAddBookEntry" classname="com.intuit.craft.rest.endopoint.v1.controller.BookShelfControllerTest" time="0.609"/>
-  <testcase name="get_All_ShouldReturnTwoBooks" classname="com.intuit.craft.rest.endopoint.v1.controller.BookShelfControllerTest" time="0.075"/>
-  <testcase name="get_Borrowed_ShouldReturnOneBook" classname="com.intuit.craft.rest.endopoint.v1.controller.BookShelfControllerTest" time="0.028"/>
-  <testcase name="checkout_BookEntry_ShouldAddBookEntryAndCheckOutAndReturnDueDate" classname="com.intuit.craft.rest.endopoint.v1.controller.BookShelfControllerTest" time="0.04"/>
+  <testcase name="add_NewBookEntry_ShouldAddBookEntry" classname="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.657"/>
+  <testcase name="get_All_ShouldReturnTwoBooks" classname="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.079"/>
+  <testcase name="get_Borrowed_ShouldReturnOneBook" classname="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.023"/>
+  <testcase name="checkout_BookEntry_ShouldAddBookEntryAndCheckOutAndReturnDueDate" classname="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.039"/>
 </testsuite>

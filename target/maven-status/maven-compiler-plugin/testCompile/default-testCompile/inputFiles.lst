@@ -1,4 +1,5 @@
-/Users/k0konat/Library/bookshelf-exercise/src/test/java/com/intuit/craft/rest/endopoint/v1/controller/BookShelfControllerTest.java
-/Users/k0konat/Library/bookshelf-exercise/src/test/java/com/intuit/craft/data/ShelfConfig.java
-/Users/k0konat/Library/bookshelf-exercise/src/test/java/com/intuit/craft/data/BookshelfTest.java
-/Users/k0konat/Library/bookshelf-exercise/src/test/java/com/intuit/craft/util/TestUtils.java
+/Users/k0konat/GitHub/bookshelf-exercise/src/test/java/com/intuit/craft/rest/endopoint/v1/controller/hander/ControllerExceptionHandlerTest.java
+/Users/k0konat/GitHub/bookshelf-exercise/src/test/java/com/intuit/craft/data/impl/ShelfConfig.java
+/Users/k0konat/GitHub/bookshelf-exercise/src/test/java/com/intuit/craft/data/impl/BookshelfTest.java
+/Users/k0konat/GitHub/bookshelf-exercise/src/test/java/com/intuit/craft/rest/endopoint/v1/controller/BookshelfControllerTest.java
+/Users/k0konat/GitHub/bookshelf-exercise/src/test/java/com/intuit/craft/util/TestUtils.java

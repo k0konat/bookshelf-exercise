@@ -13,13 +13,23 @@ import com.intuit.craft.exception.ItemNotFoundException;
 import com.intuit.craft.exception.OverflowException;
 import com.intuit.craft.rest.endopoint.v1.util.HttpUtils;
 
-
 /**
- * @author Kishore Konate
+ * The Class ControllerExceptionHandler.
+ *
+ * @author k0konat
  */
 public class ControllerExceptionHandler {
+
+/** The Constant logger. */
 static final Logger logger = LoggerFactory.getLogger(ControllerExceptionHandler.class);
 	 
+	/**
+	 * Handle item not found request.
+	 *
+	 * @param req the req
+	 * @param ex the ex
+	 * @return the error info
+	 */
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(ItemNotFoundException.class)
 	@ResponseBody
@@ -29,6 +39,13 @@ static final Logger logger = LoggerFactory.getLogger(ControllerExceptionHandler.
 	}
 	
 	
+	/**
+	 * Handle insuffiecient storage request.
+	 *
+	 * @param req the req
+	 * @param ex the ex
+	 * @return the error info
+	 */
 	@ResponseStatus(HttpStatus.INSUFFICIENT_STORAGE)
 	@ExceptionHandler(OverflowException.class)
 	@ResponseBody
@@ -37,6 +54,13 @@ static final Logger logger = LoggerFactory.getLogger(ControllerExceptionHandler.
 	    return new ErrorInfo(HttpUtils.getUrlFromContextPath(req), HttpStatus.INSUFFICIENT_STORAGE, "item_storage_full", ex);
 	}
 
+	/**
+	 * Handle exception request.
+	 *
+	 * @param req the req
+	 * @param ex the ex
+	 * @return the error info
+	 */
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(Exception.class)
 	@ResponseBody

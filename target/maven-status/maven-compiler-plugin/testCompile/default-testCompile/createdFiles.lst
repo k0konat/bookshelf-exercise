@@ -1,4 +1,2 @@
-com/intuit/craft/rest/endopoint/v1/controller/BookShelfControllerTest.class
 com/intuit/craft/util/TestUtils.class
-com/intuit/craft/data/ShelfConfig.class
-com/intuit/craft/data/BookshelfTest.class
+com/intuit/craft/rest/endopoint/v1/controller/BookshelfControllerTest.class

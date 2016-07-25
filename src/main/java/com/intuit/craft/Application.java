@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 
+
 /**
  * This is the starting point of the Spring Boot Application. The application can be started in the
  * embedded and non-embedded server mode.
@@ -14,18 +15,22 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
 
+    /** The Constant logger. */
     static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     /**
-     * Main method
+     * Main method.
      *
-     * @param args
-     * @throws InterruptedException
+     * @param args the arguments
+     * @throws InterruptedException the interrupted exception
      */
     public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(Application.class, args);
     }
 
+    /* (non-Javadoc)
+     * @see org.springframework.boot.context.web.SpringBootServletInitializer#configure(org.springframework.boot.builder.SpringApplicationBuilder)
+     */
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Application.class);

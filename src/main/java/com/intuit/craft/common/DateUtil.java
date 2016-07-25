@@ -1,12 +1,29 @@
 package com.intuit.craft.common;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+
+/**
+ * The Class DateUtil.
+ *
+ * @author k0konat
+ */
+
+/**
+ * This class is used for Date related functions.
+ * 
+ * @author k0konat.
+ */
 
 public class DateUtil {
-	 public static LocalDateTime addDays(LocalDateTime dateTimeNow, int days) {          
+	 
+ 	/**
+ 	 * Adds the days.
+ 	 *
+ 	 * @param dateTimeNow the date time now
+ 	 * @param days the days
+ 	 * @return the local date time
+ 	 */
+ 	public static LocalDateTime addDays(LocalDateTime dateTimeNow, int days) {          
 	        return dateTimeNow.plusDays(days);
 	 }
 
