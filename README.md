@@ -6,14 +6,14 @@ This is a Spring Boot POC exposing a REST API for the library exercise
     ```
     mvn spring-boot:run    
     ```
-    Open the browser at http://localhost:8080/swagger-ui.html
+    Open the browser at [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 * Running the tests
     ```
     mvn test
     ```
 
 #### Swagger UI
-* Access the swagger UI at http://localhost:8080/swagger-ui.html.
+* Access the swagger UI at [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 * Bookshelf Controller : Provides the following operations from the bookshelf
 	* Gets all the books 
 	* Gets the overdue books
