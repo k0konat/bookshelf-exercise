@@ -1,2 +1,5 @@
 com/intuit/craft/util/TestUtils.class
+com/intuit/craft/data/impl/BookshelfTest.class
+com/intuit/craft/rest/endopoint/v1/controller/hander/ControllerExceptionHandlerTest.class
+com/intuit/craft/data/impl/ShelfConfig.class
 com/intuit/craft/rest/endopoint/v1/controller/BookshelfControllerTest.class

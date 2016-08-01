@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.798" tests="4" errors="0" skipped="0" failures="0">
+<testsuite name="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.787" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/jre/lib"/>
@@ -25,7 +25,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Users/k0konat/GitHub/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf6237339494141451197.tmp"/>
+    <property name="classworlds.conf" value="/Users/k0konat/GitHub/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf2663244048780148869.tmp"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/k0konat/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -33,7 +33,7 @@
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.11.4"/>
     <property name="user.home" value="/Users/k0konat"/>
-    <property name="user.timezone" value="America/Chicago"/>
+    <property name="user.timezone" value="America/Los_Angeles"/>
     <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
@@ -58,8 +58,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="add_NewBookEntry_ShouldAddBookEntry" classname="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.661"/>
-  <testcase name="get_All_ShouldReturnTwoBooks" classname="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.079"/>
+  <testcase name="add_NewBookEntry_ShouldAddBookEntry" classname="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.634"/>
+  <testcase name="get_All_ShouldReturnTwoBooks" classname="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.09"/>
   <testcase name="get_Borrowed_ShouldReturnOneBook" classname="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.024"/>
-  <testcase name="checkout_BookEntry_ShouldAddBookEntryAndCheckOutAndReturnDueDate" classname="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.034"/>
+  <testcase name="checkout_BookEntry_ShouldAddBookEntryAndCheckOutAndReturnDueDate" classname="com.intuit.craft.rest.endopoint.v1.controller.BookshelfControllerTest" time="0.039"/>
 </testsuite>
